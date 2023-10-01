@@ -1,14 +1,12 @@
-import os
 from typing import Any, Dict
 
 import openai
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
 
 class GPT:
   def __init__(self) -> None:
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
   
   def generate_chat_response(self, prompt: str):
     response = openai.ChatCompletion.create(

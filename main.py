@@ -9,7 +9,6 @@ USER_NAME = "user"
 ASSISTANT_NAME = "ai"
 
 chat_gpt: gpt.GPT = gpt.GPT()
-print("GPT3の初期化完了")
 
 #--------------------------
 # 画面表示処理
