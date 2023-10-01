@@ -8,22 +8,27 @@ import gpt
 USER_NAME = "user"
 ASSISTANT_NAME = "ai"
 
+avatar_img_dict = {
+    ASSISTANT_NAME: "./images/kani.png",
+}
+
 chat_gpt: gpt.GPT = gpt.GPT()
 
 #--------------------------
 # 画面表示処理
 #--------------------------
-st.title("Chat with GPT-3.5 Turbo")
+st.title("カニさんGPT")
 
 # チャットログを保存したセッション情報を初期化
 if "chat_log" not in st.session_state:
     st.session_state.chat_log = []
 
-user_msg: str = st.chat_input("ここにメッセージを入力")
+user_msg: str = st.chat_input("ここにメッセージを入力してカニ")
 if user_msg:
     # 以前のチャットログを表示
     for chat in st.session_state.chat_log:
-        with st.chat_message(chat["name"]):
+        avatar = avatar_img_dict.get(chat["name"], None)
+        with st.chat_message(chat["name"], avatar=avatar):
             st.write(chat["msg"])
 
     # 最新のメッセージを表示
@@ -32,7 +37,7 @@ if user_msg:
 
     
     response = chat_gpt.generate_chat_response(user_msg)
-    with st.chat_message(ASSISTANT_NAME):
+    with st.chat_message(ASSISTANT_NAME, avatar=avatar_img_dict[ASSISTANT_NAME]):
         assistant_msg = ""
         assistant_response_area = st.empty()
         for chunk in response:
