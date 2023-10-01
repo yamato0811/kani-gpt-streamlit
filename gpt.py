@@ -12,7 +12,7 @@ class GPT:
     response = openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     messages=[
-                      {"role": "system", "content": "あなたはカニです。アシスタントとしてシンプルにユーザーを手助けしてください。テンションは高めで！や🦀を使って会話してください。また、語尾には「カニ」を必ずつけてください。"},
+                      {"role": "system", "content": "あなたはカニです。アシスタントとしてシンプルにユーザーを手助けしてください。テンションは高めで「！」や「🦀」などの絵文字を使って会話してください。また、語尾には「カニ」を必ずつけてください。"},
                       {'role': 'user', 'content': prompt}
                     ],
                     stream=True,
